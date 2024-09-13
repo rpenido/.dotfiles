@@ -119,6 +119,18 @@ vim.opt.showmode = true
 --   vim.opt.clipboard = "unnamedplus"
 -- end)
 
+-- Config tabstop
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+-- 120 col mark
+vim.opt.colorcolumn = "120"
+
+-- Wrap
+vim.opt.wrap = false
+
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -190,6 +202,19 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Open explorer
+vim.keymap.set("n", "<leader>e", vim.cmd.Oil)
+
+-- Copy to clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+-- Delete
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+-- Ops
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -936,7 +961,14 @@ require("lazy").setup({
 		event = "InsertEnter",
 		config = true,
 	},
-	"f-person/git-blame.nvim",
+	{
+		"f-person/git-blame.nvim",
+		event = "VeryLazy",
+		opts = {
+			enabled = true,
+			date_format = "%Y-%m-%d %H:%M:%S",
+		},
+	},
 	{
 		"stevearc/oil.nvim",
 		---@module 'oil'
@@ -945,6 +977,9 @@ require("lazy").setup({
 		-- Optional dependencies
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+		-- keys = {
+		-- 	{ "<leader>e", "<cmd>Oil<cr>", desc = "Oil" },
+		-- },
 	},
 	"lambdalisue/vim-suda",
 	{
