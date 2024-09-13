@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+mpv /home/rpenido/bin/8-bit-powerup-6768.wav --really-quiet;
+notify-send 'Done!';

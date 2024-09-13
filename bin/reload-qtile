@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sleep 1;
+qtile-cmd -o cmd -f restart

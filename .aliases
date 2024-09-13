@@ -1,0 +1,2 @@
+alias rm='echo "This is not the command you are looking for. Use trash or \\\rm."; false'
+alias yl='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
