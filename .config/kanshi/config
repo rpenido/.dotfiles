@@ -4,7 +4,7 @@ profile default {
 }
 
 profile docked {
-  output DP-2 mode 2560x1440@60
+  output DP-2 mode 2560x1440
   output eDP-1 disable
   exec "pkill -SIGUSR1 qtile"
 }
