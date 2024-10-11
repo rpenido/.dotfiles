@@ -31,13 +31,13 @@ from enum import Enum
 
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.backend.wayland import InputConfig
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, DropDown, Group, Key, Match, Screen, ScratchPad
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 # from libqtile.log_utils import logger
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = guess_terminal() or "alacritty"
 home = os.path.expanduser('~')
 
 def screenshot(qtile, area=False, clipboard=False):
@@ -104,7 +104,7 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     # Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-    Key([mod], "d", lazy.spawn("alacritty --class=launcher -e sway-launcher-desktop"), desc="Spawn a command using a prompt widget"),
+    Key([mod], "d", lazy.spawn(f"{terminal} --class=launcher -e sway-launcher-desktop"), desc="Spawn a command using a prompt widget"),
     Key([mod, "shift"], "e", lazy.spawn("wlogout"), desc="Show the logout/quit prompt"),
     
     # Audio keys
@@ -198,23 +198,74 @@ for i in groups:
         ]
     )
 
+groups.append(
+    ScratchPad(
+        "scratchpad",
+        [
+            DropDown(
+                "term",
+                terminal,
+                width=0.4,
+                height=0.5,
+                x=0.3,
+                y=0.1,
+                opacity=1
+            ),
+            DropDown(
+                "mixer",
+                f"{terminal} -e pulsemixer",
+                width=0.4,
+                height=0.6,
+                x=0.3,
+                y=0.1,
+                opacity=1
+            ),
+            DropDown(
+                "bluetooth",
+                f"{terminal} -e bluetui",
+                width=0.4,
+                height=0.5,
+                x=0.3,
+                y=0.1,
+                opacity=1
+            ),
+            DropDown(
+                "music",
+                "spotify",
+                width=0.9,
+                height=0.9,
+                x=0.05,
+                y=0.05,
+                opacity=1
+            ),
+        ]
+    )
+)
+
+keys.extend([
+    Key([mod], "Escape", lazy.group["scratchpad"].dropdown_toggle("term")),
+    Key([mod], "bracketleft", lazy.group["scratchpad"].dropdown_toggle("mixer")),
+    Key([mod], "bracketright", lazy.group["scratchpad"].dropdown_toggle("bluetooth")),
+    Key([mod], "m", lazy.group["scratchpad"].dropdown_toggle("music")),
+])
+
 # Nord?
-colors = [["#3b4252", "#3b4252"], # Black
-         ["#2e3440", "#2e3440"], # Bright Black
-         ["#eceff4", "#eceff4"], # White
-         ["#bf616a", "#bf616a"], # Red
-         ["#a3be8c", "#a3be8c"], # Green
-         ["#d08770", "#d08770"], # Orange
-         ["#5e81ac", "#5e81ac"], # Blue
-         ["#81a1c1", "#81a1c1"], # Light Blue
-         ["#88c0d0", "#88c0d0"], # Cyan
-         ["#b48ead", "#b48ead"], # Violet
-         ["#8fbcbb", "#8fbcbb"], # Teal
-         ["#ebcb8b", "#ebcb8b"]] # Yellow
+colors = [["#3b4252", "#3b4252"], # Black 0
+         ["#2e3440", "#2e3440"], # Bright Black 1
+         ["#eceff4", "#eceff4"], # White 2
+         ["#bf616a", "#bf616a"], # Red 3
+         ["#a3be8c", "#a3be8c"], # Green 4
+         ["#d08770", "#d08770"], # Orange 5
+         ["#5e81ac", "#5e81ac"], # Blue 6
+         ["#81a1c1", "#81a1c1"], # Light Blue 7
+         ["#88c0d0", "#88c0d0"], # Cyan 8
+         ["#b48ead", "#b48ead"], # Violet 9
+         ["#8fbcbb", "#8fbcbb"], # Teal 10
+         ["#ebcb8b", "#ebcb8b"]] # Yellow 11
 
 layout_config = {
     "margin": 3,
-    "border_focus": colors[6][0],
+    "border_focus": colors[5][0],
     "border_normal": colors[1][0],
 }
 
