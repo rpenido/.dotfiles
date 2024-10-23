@@ -300,10 +300,11 @@ class WALLPPAPERS(Enum):
     FROZEN_LAKE = f"{home}/frozen-lake-2-3840x2160-v0-6mna0x55o98c1.jpeg"
     CENTRO_SAPUCAI = f"{home}/unsplash-image-NRkEJNevwM8.jpg"
     CENTRO_SAPUCAI_2 = f"{home}/20240929_170819~4.jpg"
+    CENTRO_PLOMBAGINA_CHUVA = f"{home}/20241010_145128.jpg"
 
 screens = [
     Screen(
-        wallpaper=WALLPPAPERS.CENTRO_SAPUCAI_2.value,
+        wallpaper=WALLPPAPERS.CENTRO_PLOMBAGINA_CHUVA.value,
         wallpaper_mode="fill",
         bottom=bar.Bar(
             [
