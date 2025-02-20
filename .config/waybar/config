@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["custom/host", "sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network#wlan", "network#eth","network#vpn", "cpu", "memory", "temperature", "backlight", "battery", "tray"],
+    "modules-right": ["pulseaudio", "network#wlan", "network#eth","network#vpn", "cpu", "memory", "backlight", "battery", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,

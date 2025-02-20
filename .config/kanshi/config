@@ -1,10 +1,22 @@
 profile default {
   output eDP-1 enable scale 2
-  exec "pkill -SIGUSR1 qtile"
+  exec pkill -SIGUSR1 qtile
 }
 
 profile docked {
-  output DP-2 mode 2560x1440
+  output DP-4 mode 3840x2160 scale 1.5
   output eDP-1 disable
-  exec "pkill -SIGUSR1 qtile"
+  exec pkill -SIGUSR1 qtile
+}
+
+profile eGPU-1 {
+  output DP-2 mode 3840x2160 scale 1.5
+  output eDP-1 disable
+  exec pkill -SIGUSR1 qtile
+}
+
+profile eGPU-2 {
+  output HDMI-A-2 mode 3840x2160 scale 1.5
+  output eDP-1 disable
+  exec pkill -SIGUSR1 qtile
 }
