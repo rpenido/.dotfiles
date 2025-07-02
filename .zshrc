@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -121,3 +121,9 @@ source /usr/share/fzf/completion.zsh
 
 # mise
 eval "$(mise activate zsh)"
+
+# mcfly
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=2
+export MCFLY_RESULTS_SORT=LAST_RUN
+eval "$(mcfly init zsh)"
