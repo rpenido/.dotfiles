@@ -1,5 +1,4 @@
 --[[
-
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -911,7 +910,15 @@ require("lazy").setup({
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
+		opts = {
+      keywords = {
+        WIP = { color = "#FC46AA"  },
+      },
+      signs = false,
+    },
+    keys = {
+      { "<leader>ftw", "<cmd>TodoTelescope keywords=WIP<cr>", desc = "[F]ind Workspace [W]IP" },
+    }
 	},
 
 	{ -- Collection of various small independent plugins/modules
