@@ -22,7 +22,7 @@ profile eGPU-2 {
 }
 
 profile eGPU-3 {
-  output DP-6 mode 2560x1440 scale 1
+  output DP-6 mode 2560x1440 scale 1 adaptive_sync on
   output eDP-1 disable
   exec pkill -SIGUSR1 qtile
 }
